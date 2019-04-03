@@ -10,16 +10,14 @@ def reheap_up(side) :
             if max_heap[(i-1)//2] < max_heap[i] : # if parent node is smaller than child node
                 max_heap[(i-1)//2], max_heap[i] = max_heap[i], max_heap[(i-1)//2] # swap
                 i = (i-1)//2 # use //, kept int type
-            else : # else finish at once
-                break
+            else : break # else finish at once
     else : # vice versa
         i = len(min_heap)-1
         while i > 0 :
             if min_heap[(i-1)//2] > min_heap[i] :
                 min_heap[(i-1)//2], min_heap[i] = min_heap[i], min_heap[(i-1)//2]
                 i = (i-1)//2
-            else :
-                break
+            else : break
 
 def reheap_down(side) :
     i = 0 # start node : first
@@ -30,15 +28,12 @@ def reheap_down(side) :
                     max_heap[i], max_heap[i*2+2] = max_heap[i*2+2], max_heap[i] # swap
                 elif max_heap[i] < max_heap[i*2+1] : # if left child node is bigger than parent node
                     max_heap[i], max_heap[i*2+1] = max_heap[i*2+1], max_heap[i]
-                else : # else finish at once
-                    break
+                else : break # else finish at once
             elif i*2+1 < len(max_heap) : # avoid overrun
                 if max_heap[i] < max_heap[i*2+1] : # if left child node (= final node) is bigger than ...
                     max_heap[i], max_heap[i*2+1] = max_heap[i*2+1], max_heap[i]
-                else :
-                    break
-            else :
-                break
+                else : break
+            else : break
     else : # vice versa
         while i < len(min_heap) :
             if i*2+2 < len(min_heap) :
@@ -46,15 +41,12 @@ def reheap_down(side) :
                     min_heap[i], min_heap[i*2+2] = min_heap[i*2+2], min_heap[i]
                 elif min_heap[i] > min_heap[i*2+1] :
                     min_heap[i], min_heap[i*2+1] = min_heap[i*2+1], min_heap[i]
-                else :
-                    break
+                else : break
             elif i*2+1 < len(min_heap) :
                 if min_heap[i] > min_heap[i*2+1] :
                     min_heap[i], min_heap[i*2+1] = min_heap[i*2+1], min_heap[i]
-                else :
-                    break
-            else :
-                break
+                else : break
+            else : break
 
 def Heap4Median_AddItem(value) :
     if len(max_heap) <= len(min_heap) :
@@ -93,3 +85,4 @@ for line in infile :
 
 print("The median is", max_heap[0]) # max heap's first node is median
 
+infile.close() # don't forget close!
